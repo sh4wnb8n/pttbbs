@@ -510,26 +510,31 @@ igetch(void)
     while (1)
     {
 	ch = dogetch();
-
+	debug("[ch g:%02x", ch);
 	// convert virtual terminal keys
 	ch = vtkbd_process(ch, &vtkbd_ctx);
+	debug(" v:%02x", ch);
 	switch(ch)
 	{
 	    case KEY_INCOMPLETE:
 		// XXX what if endless?
+		debug(" con.\n");
 		continue;
 
 	    case KEY_ESC:
 		KEY_ESC_arg = vtkbd_ctx.esc_arg;
+		debug("]\n");
 		return ch;
 
 	    case KEY_UNKNOWN:
+		debug("]\n");
 		return ch;
 
 	    // common global hot keys...
 	    case Ctrl('L'):
 		redrawwin();
 		refresh();
+		debug(" con.\n");
 		continue;
 #ifdef DEBUG
 	    case Ctrl('Q'):
@@ -538,6 +543,7 @@ igetch(void)
 		    get_memusage(sizeof(usage), usage);
 		    vmsg(usage);
 		}
+		debug(" con.\n");
 		continue;
 #endif
 	}
@@ -546,10 +552,13 @@ igetch(void)
 	if (currutmp)
 	{
 	    ch = process_pager_keys(ch);
-	    if (ch == KEY_INCOMPLETE)
+	    debug(" p:%02x", ch);
+	    if (ch == KEY_INCOMPLETE){
+	        debug(" con.\n");
 		continue;
+	    }
 	}
-
+	debug("]\n");
 	return ch;
     }
     // should not reach here. just to make compiler happy.

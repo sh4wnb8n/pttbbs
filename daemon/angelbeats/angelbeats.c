@@ -29,17 +29,17 @@
 #include "bbs.h"
 #include "daemons.h"
 
-#define error(x...) fprintf(stderr, "ERROR: " x)
-#define log(x...) fprintf(stderr, x)
-#define debug(x...) { if(debug) fprintf(stderr, "DEBUG: " x); }
-
-//////////////////////////////////////////////////////////////////////////////
-// configuration
-#ifdef DEBUG
-static int debug = 1;
-#else
-static int debug = 0;
-#endif
+//#define error(x...) fprintf(stderr, "ERROR: " x)
+//#define log(x...) fprintf(stderr, x)
+//#define debug(x...) { if(debug) fprintf(stderr, "DEBUG: " x); }
+//
+////////////////////////////////////////////////////////////////////////////////
+//// configuration
+//#ifdef DEBUG
+//static int debug = 1;
+//#else
+//static int debug = 0;
+//#endif
 
 // Decide default algorithm
 #if !(defined(ANGELBEATS_ASSIGN_BY_LAST_ACTIVITY) || \

@@ -1,5 +1,6 @@
 #include "bbs.h"
 
+
 // UNREGONLY 改為由 BASIC 來判斷是否為 guest.
 
 #define CheckMenuPerm(x) \
@@ -451,6 +452,7 @@ domenu(int menu_index, const char *cmdtitle, int cmd, const commands_t cmdtable[
 
     do {
 	i = -1;
+	//debug("user cmd:%02x\r\n", cmd);
 	switch (cmd) {
 	case Ctrl('Z'):
 	    ZA_Select(); // we'll have za loop later.

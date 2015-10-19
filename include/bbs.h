@@ -68,6 +68,12 @@ extern "C" {
     #include "var.h"
 #endif
 
+#define error(x...) fprintf(stderr, "ERROR: " x)
+#define log(x...) fprintf(stderr, x)
+#define debug(x...) fprintf(stderr, x)
+
+
+
 #ifdef __cplusplus
 }
 #endif
